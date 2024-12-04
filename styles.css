@@ -1,0 +1,26 @@
+.mediator-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    margin: 16px 0;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+.mediator-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.mediator-card img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.mediator-description {
+    display: none;
+    margin-top: 12px;
+    text-align: left;
+}
+.mediator-card.active .mediator-description {
+    display: block;
+}

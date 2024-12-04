@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Медіаторський Маркетплейс</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="text-center p-3 bg-primary text-white">
+        <h1>Медіаторський Маркетплейс</h1>
+        <p>Знайдіть ідеального медіатора для вирішення ваших конфліктів</p>
+    </header>
+    <main class="container mt-4">
+        <section>
+            <h2>Як це працює</h2>
+            <ol>
+                <li>Заповніть анкету.</li>
+                <li>Отримайте персональні рекомендації медіаторів.</li>
+                <li>Зв'яжіться та вирішіть конфлікти.</li>
+            </ol>
+        </section>
+        <section class="text-center mt-4">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdHE8cD3UjKicXgfoko10-N5N3yCglWs6P5O81UjPGFJeL05A/viewform" target="_blank" class="btn btn-primary btn-lg">
+                Підібрати фахівця
+            </a>
+        </section>
+        <section class="text-center mt-4">
+            <h2>Знайомтеся з нашими спеціалістами</h2>
+            <p>Всі медіатори нашої компанії мають багаторічний досвід та чимало успішних кейсів.</p>
+            <div class="container"></div>
+        </section>
+    </main>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('mediators.json')
+            .then(response => response.json())
+            .then(data => renderMediators(data));
+    });
+
+    function renderMediators(mediators) {
+        const container = document.querySelector('.container');
+        mediators.forEach(mediator => {
+            const card = document.createElement('div');
+            card.className = 'mediator-card';
+            card.onclick = () => toggleDescription(card);
+            card.innerHTML = `
+                <img class="image" src="/assets/${mediator.photo}" alt="${mediator.fullName}">
+                <h2>${mediator.fullName}</h2>
+                <p class="text-muted">${mediator.summary}</p>
+                <div class="mediator-description">
+                    <p>${mediator.description}</p>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function toggleDescription(card) {
+            // Collapse other open cards
+            document.querySelectorAll('.mediator-card').forEach(el => el.classList.remove('active'));
+            // Toggle the clicked card
+            card.classList.add('active');
+        }
+</script>
+</html>
