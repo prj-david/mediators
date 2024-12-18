@@ -20,7 +20,11 @@
     display: none;
     margin-top: 12px;
     text-align: left;
+    white-space: pre-wrap;
 }
 .mediator-card.active .mediator-description {
     display: block;
+}
+.mediator-card.active .text-muted {
+    display: none;
 }

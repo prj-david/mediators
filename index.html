@@ -59,10 +59,16 @@
     }
 
     function toggleDescription(card) {
-            // Collapse other open cards
-            document.querySelectorAll('.mediator-card').forEach(el => el.classList.remove('active'));
-            // Toggle the clicked card
+        // Check if the clicked card is already active
+        const isActive = card.classList.contains('active');
+        
+        // Collapse all open cards
+        document.querySelectorAll('.mediator-card').forEach(el => el.classList.remove('active'));
+        
+        // If the clicked card was not active, activate it
+        if (!isActive) {
             card.classList.add('active');
         }
+    }
 </script>
 </html>
